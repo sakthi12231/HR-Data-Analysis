@@ -1,18 +1,4 @@
-CREATE TABLE employees (
-    employee_id VARCHAR(20) PRIMARY KEY,
-    full_name VARCHAR(255),
-    job_title VARCHAR(255),
-    department VARCHAR(100),
-    business_unit VARCHAR(100),
-    gender VARCHAR(20),
-    ethnicity VARCHAR(50),
-    age INT,
-    hire_date DATE,
-    annual_salary INT,
-    bonus_percentage DECIMAL(5,2),
-    country VARCHAR(100),
-    city VARCHAR(100)
-);
+
 
 -- 1. Count of Employees
 
