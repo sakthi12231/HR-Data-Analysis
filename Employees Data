@@ -1,0 +1,82 @@
+CREATE TABLE employees (
+    employee_id VARCHAR(20) PRIMARY KEY,
+    full_name VARCHAR(255),
+    job_title VARCHAR(255),
+    department VARCHAR(100),
+    business_unit VARCHAR(100),
+    gender VARCHAR(20),
+    ethnicity VARCHAR(50),
+    age INT,
+    hire_date DATE,
+    annual_salary INT,
+    bonus_percentage DECIMAL(5,2),
+    country VARCHAR(100),
+    city VARCHAR(100)
+);
+
+-- 1. Count of Employees
+
+SELECT COUNT(*) AS total_employees FROM employees;
+
+-- 2. Count of Employees by Year (for trend analysis)
+
+SELECT EXTRACT(YEAR FROM hire_date) AS hire_year, COUNT(*) AS total_hires
+FROM employees
+GROUP BY hire_year
+ORDER BY hire_year;
+
+-- 3. Count of Employees by gender
+
+SELECT gender, COUNT(*) AS total_employees
+FROM employees
+GROUP BY gender;
+
+-- 4. Count of Employees by Age Group
+
+SELECT age, COUNT(*) AS total_employees
+FROM employees
+GROUP BY age
+ORDER BY age;
+
+-- 5. Count of Employees by Country
+
+SELECT country, COUNT(*) AS total_employees
+FROM employees
+GROUP BY country
+ORDER BY total_employees DESC;
+
+-- 6. Count of Employees by Department
+
+SELECT department, COUNT(*) AS total_employees
+FROM employees
+GROUP BY department
+ORDER BY total_employees DESC;
+
+-- 7. Count of Employees by Job Title
+
+SELECT job_title, COUNT(*) AS total_employees
+FROM employees
+GROUP BY job_title
+ORDER BY total_employees DESC
+LIMIT 10; 
+
+-- 8. Average Salary by Department
+
+SELECT department, ROUND(AVG(annual_salary), 2) AS avg_salary
+FROM employees
+GROUP BY department
+ORDER BY avg_salary DESC;
+
+-- 9. Total Salary Expense by Business Unit
+
+SELECT business_unit, SUM(annual_salary) AS total_salary_expense
+FROM employees
+GROUP BY business_unit
+ORDER BY total_salary_expense DESC;
+
+-- 10. Top 5 Highest-Paid Employees
+
+SELECT full_name, job_title, department, annual_salary
+FROM employees
+ORDER BY annual_salary DESC
+LIMIT 5;
